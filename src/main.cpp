@@ -3,6 +3,7 @@
 #include "GameObject/Images/TypeObject.h"
 #include "Information.h"
 #include "GameObject/MovingObject/Player.h"
+#include <iostream>
 
 int main()
 {
@@ -34,16 +35,17 @@ int main()
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
-		}
 
- 	//	if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Tab)
-		//{
-		//	player.startJump(); // Start jumping when Tab is pressed
-		//}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+			{
+				std::cout << "Space pressed, starting jump!" << std::endl;
+				player.startJump();
+			}
+		}
 
 		deltaTime = clock.restart().asSeconds(); // Get the time elapsed since the last frame
 		player.move(deltaTime); // Example deltaTime, adjust as needed
-
+		
 
 		window.clear();
 		player.draw(window);
