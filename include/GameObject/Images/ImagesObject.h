@@ -14,7 +14,6 @@ public:
 private:
 	
 	static std::vector<sf::Texture> m_pictures;
-	//
 	//static void loadPlayer();
 	//static void loadSmartEnemy();
 	//static void loadStupidEnemy();

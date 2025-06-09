@@ -9,8 +9,9 @@ public:
 	MovingObject(sf::Vector2f location, sf::Sprite sprite, TypeObject type);
 	~MovingObject() override = default;
 
-	virtual void move(float) {};
+	virtual void move(float) = 0;
 	virtual bool isDead() const { return m_dead; }
+	virtual void updateDirection() {}; // ????
 
 protected:
 	bool m_dead = false;

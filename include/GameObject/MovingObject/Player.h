@@ -8,15 +8,13 @@ public:
 	~Player() override = default;
 
 	void startJump();
-	void move(float deltaTime) override;
-	void moveUpToDirection(float deltaTime);
-	void updateModeDirection();
+	void move(float deltaTime) override; // add move right here on the World. with View.
+
 
 	virtual void handleCollision(Object&) override;
 	virtual void handleCollision(Enemy&) override; 
 
 private:
-	int m_life = 5;
 
 	sf::Vector2f m_firstLoc;
 	sf::Vector2f m_nextLoc;
@@ -25,5 +23,6 @@ private:
 	bool m_jumping = false;
 	bool  m_isFalling = false;    // I am falling now = true.
 
-	// בדיקת push
+	void moveUpToDirection(float deltaTime);
+	void updateModeDirection();
 };

@@ -12,9 +12,10 @@ public:
 private:
     static std::vector<sf::Texture> m_pictures;
 
-
-    //static void loadStart();
-    //static void loadStore();
-    //static void loadHelp();
-    //static void loadExit();
+    static void loadStart();
+    static void loadStore();
+    static void loadHelp();
+    static void loadExit();
+    static void loadWatch();
+    static void loadGitHub();
 };

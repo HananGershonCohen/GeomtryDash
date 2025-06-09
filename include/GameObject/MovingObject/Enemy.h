@@ -5,6 +5,7 @@ class Enemy : public MovingObject
 public:
 	Enemy(sf::Vector2f location, sf::Sprite sprite, TypeObject type);
 	~Enemy() override = default;
+	virtual void move(float deltaTime) override;
 
 	virtual void handleCollision(Object&) override {};
 

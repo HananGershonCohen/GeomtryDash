@@ -21,7 +21,7 @@ void ImagesObject::loadAllTextures()
 //	if (!m_pictures[static_cast<int>(TypeObject::player)].loadFromFile("Player.png"))
 //		std::cout << "Error: \n    Failed to load player image (file not found).";
 //}
-//
+
 //void ImagesObject::loadSmartEnemy()
 //{
 //	if(!m_pictures[static_cast<int>(TypeObject::SmartEnemy)].loadFromFile("SmartEnemy.png"))
@@ -48,3 +48,4 @@ sf::Sprite ImagesObject::getSpinte(const TypeObject& type, const sf::Vector2f wa
 
 	return sprint;
 }
+

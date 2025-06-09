@@ -16,6 +16,11 @@ void Player::startJump()
 
 void Player::move(float deltaTime)
 {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+	{
+		startJump(); // start jumping if space is pressed.
+	}
+
 	if (!m_jumping)
 		return;
 	m_nextLoc = m_location; // update.
