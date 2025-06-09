@@ -1,7 +1,7 @@
 #include "GameObject/MovingObject/Enemy.h"
 
-Enemy::Enemy(sf::Vector2f location, sf::Sprite sprite, TypeObject type)
-	: MovingObject(location, sprite, type) {
+Enemy::Enemy(sf::Vector2f location, sf::Sprite sprite)
+	: MovingObject(location, sprite) {
 }
 
 void Enemy::move(float deltaTime)

@@ -45,7 +45,7 @@ void GameController::mainLoop()
 	}
 	sf::Sprite sprite(texture);
 	sprite.setScale(0.04f, 0.04f); // Scale the sprite to fit the game world
-	Player player(loc, sprite, TypeObject::player);
+	Player player(loc, sprite);
 	m_movingObjVec.push_back(std::make_unique<Player>(player)); // add player to moving object vector
 	
 	m_clock.restart();// not to get a lot of time itch time that the function called

@@ -1,8 +1,8 @@
 #include "GameObject/MovingObject/Player.h"
 #include "nameSpace/MovingData.h"
 
-Player::Player(sf::Vector2f location, sf::Sprite sprite, TypeObject type)
-	: MovingObject(location, sprite, type) {}
+Player::Player(sf::Vector2f location, sf::Sprite sprite)
+	: MovingObject(location, sprite) {}
 
 void Player::startJump()
 {

@@ -3,7 +3,7 @@
 class Enemy : public MovingObject
 {
 public:
-	Enemy(sf::Vector2f location, sf::Sprite sprite, TypeObject type);
+	Enemy(sf::Vector2f location, sf::Sprite sprite);
 	~Enemy() override = default;
 	virtual void move(float deltaTime) override;
 

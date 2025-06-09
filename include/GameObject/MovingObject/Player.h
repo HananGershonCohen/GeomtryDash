@@ -4,7 +4,7 @@
 class Player : public MovingObject
 {
 public:
-	Player(sf::Vector2f location, sf::Sprite sprite, TypeObject type);
+	Player(sf::Vector2f location, sf::Sprite sprite);
 	~Player() override = default;
 
 	void startJump();

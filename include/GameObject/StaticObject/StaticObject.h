@@ -3,7 +3,7 @@
 class StaticObject : public Object
 {
 public:
-	StaticObject(sf::Vector2f location, sf::Sprite sprite, TypeObject type);
+	StaticObject(sf::Vector2f location, sf::Sprite sprite);
 	
 protected:
 

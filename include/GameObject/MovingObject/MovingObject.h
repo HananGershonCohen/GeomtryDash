@@ -6,7 +6,7 @@
 class MovingObject : public Object
 {
 public:
-	MovingObject(sf::Vector2f location, sf::Sprite sprite, TypeObject type);
+	MovingObject(sf::Vector2f location, sf::Sprite sprite);
 	~MovingObject() override = default;
 
 	virtual void move(float) = 0;
