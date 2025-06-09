@@ -59,12 +59,23 @@ void Player::updateModeDirection()
 	}
 }
 
-void Player::handleCollision(Object&)
+void Player::handleCollision(Object& other)
 {
+	other.checkCollision(*this); // Check if the other object collides with this player object.	
 }
 
 void Player::handleCollision(Enemy&)
 {
+	// if the player collides with an enemy, we can handle it here.
+	std::cout << "Player collided with an enemy." << std::endl;
+	m_dead = true; // Set the player as dead on collision with an enemy.
+	if (m_jumping) // If the player is jumping, we can reset the jump state.
+	{
+		m_jumping = false;
+		m_isFalling = false;
+		m_location = m_firstLocBeforeJump; // Reset to the initial position before jump.
+	}
+
 }
 
 //void Player::startJump()

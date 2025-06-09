@@ -1,5 +1,7 @@
+#pragma once
 #include "GameObject/MovingObject/MovingObject.h"
 #include "GameObject/Images/ImagesObject.h"
+
 class Enemy : public MovingObject
 {
 public:
@@ -7,11 +9,11 @@ public:
 	~Enemy() override = default;
 	virtual void move(float deltaTime) override;
 
-	virtual void handleCollision(Object&) override {};
+	virtual void handleCollision(Object&) override;
 
 private:
-	
-	
+	sf::Vector2f m_direction = { -1.f, 0.f };	// Default direction to the left
+
 };
 
 /*

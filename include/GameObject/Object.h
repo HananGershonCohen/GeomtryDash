@@ -1,7 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "GameObject/Images/TypeObject.h"
+#include <iostream>
 
+class StaticObject;
 class Player;
 class Enemy;
 
@@ -12,7 +14,11 @@ public:
 	virtual ~Object() = default;
 	virtual void draw(sf::RenderWindow& window);
 
+	bool checkCollision(Object&) const;
+	bool collidesWith(Object&) const;
+
 	virtual void handleCollision(Object&) {};
+	virtual void handleCollision(StaticObject&) {};
 	virtual void handleCollision(Player&) {};
 	virtual void handleCollision(Enemy&) {};
 

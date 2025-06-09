@@ -1,6 +1,9 @@
 #include "GameController.h"
 #include <iostream>
 #include "GameObject/MovingObject/Player.h"
+#include "GameObject/MovingObject/Enemy.h"
+#include "GameObject/StaticObject/ExitDoor.h"
+#include "GameObject/StaticObject/Obstacle.h"
 
 GameController::GameController()
 	: m_window(sf::VideoMode(800, 900), "Geometry Dash"), m_menuManager(m_window)
@@ -37,17 +40,39 @@ void GameController::run()
 //-------------------------------------
 void GameController::mainLoop()
 {
-	sf::Vector2f loc(100.f, 550.f);
-	sf::Texture texture;
-	if (!texture.loadFromFile("Player.png")) {
+	/*לא עובד אם אני כותב את זה בפונקציה אחרת. ??? */
+	sf::Vector2f loc1(100.f, 550.f);
+	sf::Texture texture1;
+	if (!texture1.loadFromFile("Player.png")) {
 		std::cerr << "Error: Failed to load Robot.png" << std::endl;
 		return;
 	}
-	sf::Sprite sprite(texture);
-	sprite.setScale(0.04f, 0.04f); // Scale the sprite to fit the game world
-	Player player(loc, sprite);
+	sf::Sprite sprite1(texture1);
+	sprite1.setScale(0.04f, 0.04f); // Scale the sprite to fit the game world
+	Player player(loc1, sprite1);
 	m_movingObjVec.push_back(std::make_unique<Player>(player)); // add player to moving object vector
-	
+
+	sf::Vector2f loc(400.f, 550.f);
+	sf::Texture texture;
+	if (!texture.loadFromFile("1.png")) {
+		std::cerr << "Error: Failed to load 1.png" << std::endl;
+		return;
+	}
+	sf::Sprite sprite(texture);
+	sprite.setScale(0.08f, 0.08f); // Scale the sprite to fit the game world
+	Obstacle obscale(loc, sprite);
+	m_staticObjVec.push_back(std::make_unique<Obstacle>(obscale));
+
+	sf::Texture text;
+	if (!text.loadFromFile("3.png")) {
+		std::cerr << "Error: Failed to load 3.png" << std::endl;
+		return;
+	}
+	loc.x -= 100;
+
+	sprite.setTexture(text);
+	Enemy enemy(loc, sprite);
+	m_movingObjVec.push_back(std::make_unique<Enemy>(enemy));
 	m_clock.restart();// not to get a lot of time itch time that the function called
 	while (m_window.isOpen()) {
 
@@ -103,8 +128,20 @@ void GameController::draw()
 //-------------------------------------
 void GameController::handleCollisionController()
 {
+	for (auto& movingObj : m_movingObjVec) 
+	{
+		for (auto& staticObj : m_staticObjVec)
+		{
+			if (movingObj->collidesWith(*staticObj))
+			movingObj->handleCollision(*staticObj);
+		}
 
-
+		for (auto& otherMovingObj : m_movingObjVec)
+		{
+			if (movingObj->collidesWith(*otherMovingObj) && movingObj->checkCollision(*otherMovingObj))
+				movingObj->handleCollision(*otherMovingObj);
+		}
+	}
 }
 //-------------------------------------
 void GameController::handleMenu()
@@ -141,19 +178,7 @@ void GameController::analyzeLevel()
 
 	//m_movingObjVec.push_back(std::make_unique<Player>(loc, avaterSprite, playerType));
 
-
-	//sf::Vector2f loc(100.f, 550.f);
-	//sf::Texture texture;
-	//if (!texture.loadFromFile("Player.png")) {
-	//	std::cerr << "Error: Failed to load Robot.png" << std::endl;
-	//	return;
-	//}
-	//sf::Sprite sprite(texture);
-	//sprite.setScale(0.08f, 0.08f); // Scale the sprite to fit the game world
-	//Player player(loc, sprite, TypeObject::player);
-
-	//m_movingObjVec.push_back(std::make_unique<Player>(player)); // add player to moving object vector
-
+	
 }
 //-------------------------------------
 void GameController::updateInformation()
