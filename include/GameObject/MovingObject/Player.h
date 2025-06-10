@@ -12,7 +12,7 @@ public:
 
 
 	virtual void handleCollision(Object&) override;
-	virtual void handleCollision(Enemy&) override; 
+  //  virtual void handleCollision(Enemy&) override; 
 
 private:
 

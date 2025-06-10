@@ -6,6 +6,7 @@
 class StaticObject;
 class Player;
 class Enemy;
+class Obstacle;
 
 class Object
 {
@@ -21,9 +22,13 @@ public:
 	virtual void handleCollision(StaticObject&) {};
 	virtual void handleCollision(Player&) {};
 	virtual void handleCollision(Enemy&) {};
+	virtual void handleCollision(Obstacle&) {};
 
 protected:
 
 	sf::Vector2f m_location;
 	sf::Sprite m_sprite;
+
+	// moveByView is used to move the object by the view's position
+	virtual void moveByView(float&);
 };

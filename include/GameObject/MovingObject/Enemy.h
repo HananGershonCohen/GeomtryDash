@@ -9,10 +9,14 @@ public:
 	~Enemy() override = default;
 	virtual void move(float deltaTime) override;
 
-	virtual void handleCollision(Object&) override;
+	virtual void handleCollision(StaticObject&) override;
+	virtual void handleCollision(Player&) override;
+	// virtual void handleCollision(Obstacle&) override;
+	// virtual void handleCollision(...&) override;
+	// virtual void handleCollision(...&) override;
 
 private:
-	sf::Vector2f m_direction = { -1.f, 0.f };	// Default direction to the left
+	sf::Vector2f m_direction = { 1.f, 0.f };	// Default direction to the right
 
 };
 

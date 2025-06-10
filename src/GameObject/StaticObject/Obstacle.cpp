@@ -4,3 +4,8 @@ Obstacle::Obstacle(sf::Vector2f location, sf::Sprite sprite) :StaticObject(locat
 {
 	// Additional initialization for Obstacle if needed
 }
+
+void Obstacle::handleCollision(Object& other)
+{
+	other.handleCollision(*this); // Notify the other object about the collision
+}

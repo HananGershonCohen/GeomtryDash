@@ -24,3 +24,8 @@ bool Object::collidesWith(Object& other) const
 {
 	return m_sprite.getGlobalBounds().intersects(other.m_sprite.getGlobalBounds());
 }
+
+void Object::moveByView(float& deltaTime)
+{
+	m_location.x += deltaTime * 350;
+}
