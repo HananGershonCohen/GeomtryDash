@@ -10,9 +10,11 @@ public:
 	void startJump();
 	void move(float deltaTime) override; // add move right here on the World. with View.
 
+	virtual void handleCollision(MovingObject&) override;
+	virtual void handleCollision(Enemy&) override;
+	virtual void handleCollision(Obstacle&) override;
+	virtual void handleCollision(ExitDoor&) override;
 
-	virtual void handleCollision(Object&) override;
-  //  virtual void handleCollision(Enemy&) override; 
 
 private:
 

@@ -120,7 +120,7 @@ void GameController::handleCollisionController()
 
 		for (auto& otherMovingObj : m_movingObjVec)
 		{
-			if (movingObj->collidesWith(*otherMovingObj) /*&& movingObj->checkCollision(*otherMovingObj)*/)
+			if (movingObj->collidesWith(*otherMovingObj) && movingObj->checkCollision(*otherMovingObj))
 				movingObj->handleCollision(*otherMovingObj);
 		}
 	}

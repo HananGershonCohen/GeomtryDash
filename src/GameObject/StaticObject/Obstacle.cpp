@@ -5,7 +5,10 @@ Obstacle::Obstacle(sf::Vector2f location, sf::Sprite sprite) :StaticObject(locat
 	// Additional initialization for Obstacle if needed
 }
 
-void Obstacle::handleCollision(Object& other)
+void Obstacle::handleCollision(Player& player)
 {
-	other.handleCollision(*this); // Notify the other object about the collision
+	std::cout << "Obstacle collided with Player. Player is Dead" << std::endl;
+
+	
+	// player.handleCollision(*this); // Notify the other object about the collision
 }

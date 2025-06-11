@@ -9,8 +9,12 @@ public:
 	~Enemy() override = default;
 	virtual void move(float deltaTime) override;
 
+	virtual void handleCollision(MovingObject&) override;
 	virtual void handleCollision(StaticObject&) override;
 	virtual void handleCollision(Player&) override;
+
+	// if the enemy collides with a other enemy,  ??????
+
 	// virtual void handleCollision(Obstacle&) override;
 	// virtual void handleCollision(...&) override;
 	// virtual void handleCollision(...&) override;

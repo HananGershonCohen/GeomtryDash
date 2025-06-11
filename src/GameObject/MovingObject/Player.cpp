@@ -45,6 +45,7 @@ void Player::move(float deltaTime)
 void Player::moveUpToDirection(float deltaTime)
 {
 	if (!m_isFalling)
+
 	{
 		m_nextLoc += DIRECTION::UP * (JUMP::SPEED * deltaTime);
 	}
@@ -62,26 +63,27 @@ void Player::updateModeDirection()
 	}
 }
 
-void Player::handleCollision(Object& other)
+void Player::handleCollision(MovingObject& other)
 {
-	other.checkCollision(*this); // = if the other object collides with this player object.	
+	// Handle collision with another moving object
+	other.handleCollision(*this); // Call the other object's collision handler
 }
 
-//
-//void Player::handleCollision(Enemy&)
-//{
-//	// if the player collides with an enemy, we can handle it here.
-//	std::cout << "Player collided with an enemy." << std::endl;
-//	m_dead = true; // Set the player as dead on collision with an enemy.
-//	if (m_jumping) // If the player is jumping, we can reset the jump state.
-//	{
-//		m_jumping = false;
-//		m_isFalling = false;
-//		m_location = m_firstLocBeforeJump; // Reset to the initial position before jump.
-//	}
-//
-//	// set information about the player death + money...
-//}
+void Player::handleCollision(Enemy& enemy)
+{
+	std::cout << "Player collided with Enemy. Player is Dead" << std::endl;
+	m_dead = true; // Set the player as dead\
+	// need to finished.
+}
+void Player::handleCollision(Obstacle& obstacle)
+{
+	std::cout << "Player collided with Obstacle. Player is Dead" << std::endl;
+}
+void Player::handleCollision(ExitDoor& exitDoor)
+{
+	std::cout << "Player collided with ExitDoor. Player is Dead" << std::endl;
+}
+
 
 //void Player::startJump()
 //{

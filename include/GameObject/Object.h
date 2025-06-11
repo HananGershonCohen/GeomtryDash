@@ -4,9 +4,11 @@
 #include <iostream>
 
 class StaticObject;
+class MovingObject;
 class Player;
 class Enemy;
 class Obstacle;
+class ExitDoor;
 
 class Object
 {
@@ -19,10 +21,12 @@ public:
 	bool collidesWith(Object&) const;
 
 	virtual void handleCollision(Object&) {};
+	virtual void handleCollision(MovingObject&) {};
 	virtual void handleCollision(StaticObject&) {};
 	virtual void handleCollision(Player&) {};
 	virtual void handleCollision(Enemy&) {};
 	virtual void handleCollision(Obstacle&) {};
+	virtual void handleCollision(ExitDoor&) {};
 
 protected:
 
