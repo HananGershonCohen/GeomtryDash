@@ -1,7 +1,8 @@
 #pragma once
+#include <iostream>
 #include <SFML/Graphics.hpp>
 #include "GameObject/Images/TypeObject.h"
-#include <iostream>
+#include "GameObject/ObjectInformation.h"
 
 class StaticObject;
 class MovingObject;
@@ -27,6 +28,9 @@ public:
 	virtual void handleCollision(Enemy&) {};
 	virtual void handleCollision(Obstacle&) {};
 	virtual void handleCollision(ExitDoor&) {};
+
+
+	virtual void updateInformation(ObjectInformation&) {};
 
 protected:
 

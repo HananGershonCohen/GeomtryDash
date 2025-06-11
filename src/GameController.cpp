@@ -5,7 +5,7 @@
 #include "GameObject/StaticObject/ExitDoor.h"
 #include "GameObject/StaticObject/Obstacle.h"
 #include "GameObject/StaticObject/Gift.h"
-//#include "nameSpace/MovingData.h"
+#include "nameSpace/MovingData.h"
 
 GameController::GameController()
 	: m_window(sf::VideoMode(800, 900), "Geometry Dash"), m_menuManager(m_window)
@@ -46,10 +46,12 @@ void GameController::mainLoop()
 	Player player({ 100.f, 550.f }, images.getPlayerSprite());
 	Enemy enemy({ 200.f, 550.f }, images.getEnemySprite());
 	Obstacle obstacle({ 500.f, 550.f }, images.getObstacleSprite());
+	ExitDoor exitDoor({ 700.f, 550.f }, images.getExitDoorSprite());
 
 	m_movingObjVec.push_back(std::make_unique<Player>(player));
 	m_movingObjVec.push_back(std::make_unique<Enemy>(enemy));
 	m_staticObjVec.push_back(std::make_unique<Obstacle>(obstacle));
+	m_staticObjVec.push_back(std::make_unique<ExitDoor>(exitDoor));
 
 	m_clock.restart();// not to get a lot of time itch time that the function called
 	while (m_window.isOpen()) {
@@ -85,7 +87,7 @@ void GameController::handleEvent()
 		MovObj->move(deltaTime);
 
 	sf::View view = m_window.getView();
-	view.move(deltaTime * 350, 0.f); /*JUMP::SPEED = 350 */
+	view.move(deltaTime * MOVE::SPEED, 0.f); /*JUMP::SPEED = 350 */
 	m_window.setView(view);
 
 }

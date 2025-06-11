@@ -11,11 +11,10 @@ public:
 	void move(float deltaTime) override; // add move right here on the World. with View.
 
 	virtual void handleCollision(MovingObject&) override;
+	virtual void handleCollision(StaticObject&) override;
 	virtual void handleCollision(Enemy&) override;
-	virtual void handleCollision(Obstacle&) override;
-	virtual void handleCollision(ExitDoor&) override;
 
-
+	virtual void updateInformation(ObjectInformation&) override;
 private:
 
 	sf::Vector2f m_firstLoc;
@@ -24,7 +23,7 @@ private:
 	sf::Vector2f m_firstLocBeforeJump;
 	bool m_jumping = false;
 	bool  m_isFalling = false;    // I am falling now = true.
-
+	bool m_need2dead = false; 
 	void moveUpToDirection(float deltaTime);
 	void updateModeDirection();
 };

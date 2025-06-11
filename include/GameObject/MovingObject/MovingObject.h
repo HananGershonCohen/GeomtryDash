@@ -10,6 +10,7 @@ public:
 	~MovingObject() override = default;
 
 	virtual void move(float) = 0;
+	virtual void setDead(bool);
 	virtual bool isDead() const { return m_dead; }
 	virtual void updateDirection() {}; // ????
 

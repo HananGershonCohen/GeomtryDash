@@ -1,5 +1,6 @@
 #pragma once
 #include "GameObject/Object.h"
+#include "nameSpace/MovingData.h"
 
 Object::Object(sf::Vector2f location, sf::Sprite sprite)
 	: m_location(location), m_sprite(sprite)
@@ -27,5 +28,5 @@ bool Object::collidesWith(Object& other) const
 
 void Object::moveByView(float& deltaTime)
 {
-	m_location.x += deltaTime * 350;
+	m_location.x += deltaTime * MOVE::SPEED;
 }

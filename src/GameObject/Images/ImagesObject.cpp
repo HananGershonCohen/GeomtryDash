@@ -90,3 +90,10 @@ sf::Sprite ImagesObject::getObstacleSprite() const {
    // sprite.setScale(2.f, 2.f);
     return sprite;
 }
+
+sf::Sprite ImagesObject::getExitDoorSprite() const {
+	sf::Sprite sprite(getTexture());
+	sprite.setTextureRect(sf::IntRect(40, 836, 80, 80));
+	// sprite.setScale(2.f, 2.f);
+	return sprite;
+}

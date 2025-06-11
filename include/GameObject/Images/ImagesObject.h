@@ -30,6 +30,7 @@ public:
     sf::Sprite getPlayerSprite() const;
     sf::Sprite getEnemySprite() const;
     sf::Sprite getObstacleSprite() const;
+	sf::Sprite getExitDoorSprite() const;
 
 private:
     const sf::Texture& getTexture() const; // תחזיר texture טעון

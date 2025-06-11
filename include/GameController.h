@@ -10,6 +10,7 @@
 #include"GameObject/Images/ImagesObject.h"
 #include "GameMenu/MenuManager.h"
 #include "Information.h"
+#include "GameObject/ObjectInformation.h"
 
 
 class GameController
@@ -35,6 +36,7 @@ private:
 	std::vector <std::unique_ptr<StaticObject>> m_staticObjVec;
 
 	Information m_information;
+	ObjectInformation m_objInfo;
 	sf::RenderWindow m_window;
 	MenuManager m_menuManager;
 	bool m_need2exit = false;// in class states

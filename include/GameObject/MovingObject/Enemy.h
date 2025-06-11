@@ -15,10 +15,6 @@ public:
 
 	// if the enemy collides with a other enemy,  ??????
 
-	// virtual void handleCollision(Obstacle&) override;
-	// virtual void handleCollision(...&) override;
-	// virtual void handleCollision(...&) override;
-
 private:
 	sf::Vector2f m_direction = { 1.f, 0.f };	// Default direction to the right
 

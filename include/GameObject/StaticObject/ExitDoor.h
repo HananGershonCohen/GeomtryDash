@@ -3,5 +3,11 @@
 
 class ExitDoor : public StaticObject
 {
-	ExitDoor(sf::Vector2f loc, sf::Sprite sprite) : StaticObject(loc, sprite) {};
+public:
+	ExitDoor(sf::Vector2f, sf::Sprite);
+	virtual ~ExitDoor() = default;
+	virtual void handleCollision(Player&);
+	virtual void updateInformation(ObjectInformation&) override;
+private:
+	bool m_nextLevel;
 };

@@ -1,5 +1,6 @@
 #include "GameObject/MovingObject/Enemy.h"
 #include "GameObject/MovingObject/Player.h"
+#include "nameSpace/MovingData.h"
 
 Enemy::Enemy(sf::Vector2f location, sf::Sprite sprite)
 	: MovingObject(location, sprite) {
@@ -8,8 +9,8 @@ Enemy::Enemy(sf::Vector2f location, sf::Sprite sprite)
 void Enemy::move(float deltaTime)
 {
 	// Moves the enemy to the right until it collides with something, then changes direction.
-
-	m_location += m_direction * (150 * deltaTime);
+	Object::moveByView(deltaTime); 
+	m_location += m_direction * (MOVE::JUMP_SPEED * deltaTime);
 }
 
 void Enemy::handleCollision(MovingObject& other)

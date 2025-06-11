@@ -1,4 +1,5 @@
 #include "GameObject/StaticObject/Obstacle.h"
+#include "GameObject/MovingObject/Player.h"
 
 Obstacle::Obstacle(sf::Vector2f location, sf::Sprite sprite) :StaticObject(location, sprite)
 {
@@ -8,7 +9,5 @@ Obstacle::Obstacle(sf::Vector2f location, sf::Sprite sprite) :StaticObject(locat
 void Obstacle::handleCollision(Player& player)
 {
 	std::cout << "Obstacle collided with Player. Player is Dead" << std::endl;
-
-	
-	// player.handleCollision(*this); // Notify the other object about the collision
+	player.setDead(true); // Set the player as dead
 }
