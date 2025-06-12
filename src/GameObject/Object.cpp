@@ -10,8 +10,35 @@ Object::Object(sf::Vector2f location, sf::Sprite sprite)
 
 void Object::draw(sf::RenderWindow& window)
 {
+	if (objInView(window)) // Check if the object is in view before drawing
+	{
+		m_sprite.setPosition(m_location);
+		window.draw(m_sprite);
+	}
+	/*else
+	{
+		std::cout << "Object is not on view, not drawing." << std::endl;
+	}*/
+}
+
+bool Object::objInView(sf::RenderWindow& window)
+{
+	sf::View view = window.getView(); // get view
+
+	// get location on the world
+	sf::Vector2f viewCenter = view.getCenter();
+	sf::Vector2f viewSize = view.getSize();
+
+	//update floatRect
+	sf::FloatRect viewRect(
+		viewCenter.x - viewSize.x / 2.f,
+		viewCenter.y - viewSize.y / 2.f,
+		viewSize.x,
+		viewSize.y );
+
 	m_sprite.setPosition(m_location);
-	window.draw(m_sprite);
+	// check if the object is in the view and return the result
+	return m_isInView = viewRect.intersects(m_sprite.getGlobalBounds());
 }
 
 bool Object::checkCollision(Object& other) const

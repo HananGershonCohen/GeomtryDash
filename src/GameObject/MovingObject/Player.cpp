@@ -84,8 +84,10 @@ void Player::handleCollision(Enemy& enemy)
 
 void Player::updateInformation(ObjectInformation& info)
 {
-	info.setPlayerDead(m_need2dead);
+	// if the player is dead or not in view, set the player dead state
+	info.setPlayerDead(m_need2dead || !m_isInView);
 	m_need2dead = false;
+	m_isInView = true; 
 }
 
 //void Player::startJump()

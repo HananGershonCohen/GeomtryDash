@@ -49,9 +49,9 @@ void GameController::mainLoop()
 	ExitDoor exitDoor({ 700.f, 550.f }, images.getExitDoorSprite());
 
 	m_movingObjVec.push_back(std::make_unique<Player>(player));
-	m_movingObjVec.push_back(std::make_unique<Enemy>(enemy));
-	m_staticObjVec.push_back(std::make_unique<Obstacle>(obstacle));
-	m_staticObjVec.push_back(std::make_unique<ExitDoor>(exitDoor));
+	//m_movingObjVec.push_back(std::make_unique<Enemy>(enemy));
+	//m_staticObjVec.push_back(std::make_unique<Obstacle>(obstacle));
+	//m_staticObjVec.push_back(std::make_unique<ExitDoor>(exitDoor));
 
 	m_clock.restart();// not to get a lot of time itch time that the function called
 	while (m_window.isOpen()) {
