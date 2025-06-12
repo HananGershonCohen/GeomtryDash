@@ -111,7 +111,8 @@ void Player::setLocationY(float y)
 
 void Player::blockMovement()
 {
-	m_location = m_firstLoc; // Block movement by resetting to the first location
+	m_location.x = m_firstLoc.x - COLLISION::VERY_NEAR; // Block movement by resetting to the first location
+	m_location.y = m_firstLoc.y; // Reset Y position to the first location
 }
 
 //void Player::startJump()

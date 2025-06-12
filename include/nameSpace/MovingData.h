@@ -12,5 +12,10 @@ namespace MOVE
 	const int SPEED = 150; // Speed of the player
 	const int MAX_JUMP = 200; // Height of the jump
 	const int JUMP_SPEED = 350; // Speed of the jump
-	const float NEAR_OBJECT = 10; // Distance to consider an object as near
+}
+
+namespace COLLISION
+{
+	const float NEAR = 10; 
+	const float VERY_NEAR = 1;
 }

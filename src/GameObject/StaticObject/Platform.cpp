@@ -16,7 +16,7 @@ void Platform::handleCollision(Player& player)
     float platformTop = platformBounds.top;
 
     // if player is stand on platform
-    if (playerBottom <= platformTop + MOVE::NEAR_OBJECT)  // מרווח קטן לסבול טעויות קפיצה
+    if (playerBottom <= platformTop + COLLISION::NEAR)  // מרווח קטן לסבול טעויות קפיצה
     {
         std::cout << "Player landed on platform" << std::endl;
 
@@ -24,10 +24,9 @@ void Platform::handleCollision(Player& player)
         player.setJumping(false);  // פונקציה שנוסיף
         player.setLocationY(platformTop - playerBounds.height);  // להציב על הפלטפורמה
     }
-    else
+	else // player hit the platform from the side or bottom
     {
-        // נחסום מעבר אם הוא מגיע מהצד או מלמטה
         std::cout << "Blocked by platform (not from top)" << std::endl;
-        player.blockMovement(); // פונקציה ריקה בינתיים – ניתן להרחיב לפי הצורך
+        player.blockMovement();
     }
 }
