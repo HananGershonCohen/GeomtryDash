@@ -1,3 +1,4 @@
+#pragma once
 #include "GameObject/MovingObject/MovingObject.h"
 #include "GameObject/Images/ImagesObject.h"
 
@@ -7,13 +8,14 @@ public:
 	Player(sf::Vector2f location, sf::Sprite sprite);
 	~Player() override = default;
 
-	void startJump();
-	void move(float deltaTime) override; // add move right here on the World. with View.
-
+	void setJumping(bool);
+	sf::Sprite getSprite() const;
+	void setLocationY(float y);
+	void blockMovement();
+	virtual void move(float deltaTime) override; // add move right here on the World. with View.
 	virtual void handleCollision(MovingObject&) override;
 	virtual void handleCollision(StaticObject&) override;
 	virtual void handleCollision(Enemy&) override;
-
 	virtual void updateInformation(ObjectInformation&) override;
 private:
 
@@ -26,4 +28,5 @@ private:
 	bool m_need2dead = false; 
 	void moveUpToDirection(float deltaTime);
 	void updateModeDirection();
+	void startJump();
 };

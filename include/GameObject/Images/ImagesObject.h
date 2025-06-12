@@ -31,6 +31,8 @@ public:
     sf::Sprite getEnemySprite() const;
     sf::Sprite getObstacleSprite() const;
 	sf::Sprite getExitDoorSprite() const;
+	sf::Sprite getPlatformSprite() const;
+	// Add more sprite getters as needed
 
 private:
     const sf::Texture& getTexture() const; // תחזיר texture טעון

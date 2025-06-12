@@ -15,9 +15,17 @@ void Player::startJump()
 	m_isFalling = false; // reset falling state.
 }
 
+void Player::setJumping(bool flag)
+{
+	m_jumping = flag; // set the jumping state
+}
+
 void Player::move(float deltaTime)
 {
 	Object::moveByView(deltaTime); // move the player by the view's position
+
+	// If the player gets stuck in a wall, we will know how to leave him in his position.
+	m_firstLoc = m_location;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
@@ -82,12 +90,28 @@ void Player::handleCollision(Enemy& enemy)
 	// need to finished.
 }
 
+
 void Player::updateInformation(ObjectInformation& info)
 {
 	// if the player is dead or not in view, set the player dead state
 	info.setPlayerDead(m_need2dead || !m_isInView);
 	m_need2dead = false;
 	m_isInView = true; 
+}
+
+sf::Sprite Player::getSprite() const
+{
+	return m_sprite;
+}
+
+void Player::setLocationY(float y)
+{
+	m_location.y = y; // Set the player's Y location
+}
+
+void Player::blockMovement()
+{
+	m_location = m_firstLoc; // Block movement by resetting to the first location
 }
 
 //void Player::startJump()

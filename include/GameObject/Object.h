@@ -10,6 +10,7 @@ class Player;
 class Enemy;
 class Obstacle;
 class ExitDoor;
+class Platform;
 
 class Object
 {
@@ -28,6 +29,7 @@ public:
 	virtual void handleCollision(Enemy&) {};
 	virtual void handleCollision(Obstacle&) {};
 	virtual void handleCollision(ExitDoor&) {};
+	virtual void handleCollision(Platform&) {};
 
 	virtual void updateInformation(ObjectInformation&) {};
 protected:

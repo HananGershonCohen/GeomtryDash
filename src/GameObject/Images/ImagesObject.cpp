@@ -97,3 +97,11 @@ sf::Sprite ImagesObject::getExitDoorSprite() const {
 	// sprite.setScale(2.f, 2.f);
 	return sprite;
 }
+
+sf::Sprite ImagesObject::getPlatformSprite() const
+{
+    sf::Sprite sprite(getTexture());
+    sprite.setTextureRect(sf::IntRect(682, 513, 50, 50));
+    // sprite.setScale(2.f, 2.f);
+    return sprite;
+}
