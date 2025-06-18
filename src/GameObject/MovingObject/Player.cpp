@@ -4,9 +4,14 @@
 
 Player::Player(sf::Vector2f location, sf::Sprite sprite): MovingObject(location, sprite) {}
 
+//bool Player::m_registerIt = Factory::registerIt(CHAR::PLAYER,
+//	[](sf::Vector2f loc, const ImagesObject& images) -> std::unique_ptr<Object> {
+//		return std::make_unique<Player>(loc, images.getSpriteObject(TypeObject::player));
+//	});
+
 bool Player::m_registerIt = Factory::registerIt(CHAR::PLAYER,
-	[](sf::Vector2f loc, const ImagesObject& images) -> std::unique_ptr<Object> {
-		return std::make_unique<Player>(loc, images.getSpriteObject(TypeObject::player));
+	[](const ObjectConfig& objectConfig) -> std::unique_ptr<Object> {
+		return std::make_unique<Player>(objectConfig.location, objectConfig.images.getSpritePlayer(objectConfig.playerType));
 	});
 
 void Player::startJump()

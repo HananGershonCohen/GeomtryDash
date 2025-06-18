@@ -7,9 +7,14 @@ Platform::Platform(sf::Vector2f location, sf::Sprite sprite)
     : StaticObject(location, sprite) {
 }
 
+//bool Platform::m_registerIt = Factory::registerIt(CHAR::PLATFORM,
+//    [](sf::Vector2f loc, const ImagesObject& images) -> std::unique_ptr<Object> {
+//        return std::make_unique<Platform>(loc, images.getSpriteObject(TypeObject::Platform));
+//    });
+
 bool Platform::m_registerIt = Factory::registerIt(CHAR::PLATFORM,
-    [](sf::Vector2f loc, const ImagesObject& images) -> std::unique_ptr<Object> {
-        return std::make_unique<Platform>(loc, images.getSpriteObject(TypeObject::Platform));
+    [](const ObjectConfig& objectConfig) -> std::unique_ptr<Object> {
+        return std::make_unique<Platform>(objectConfig.location, objectConfig.images.getSpriteObject(TypeObject::Platform));
     });
 
 

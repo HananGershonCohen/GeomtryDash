@@ -230,9 +230,10 @@ void GameController::analyzeLevel()
 		
 		sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f};
 
-		std::cout << "[GameController] Before Factory::create with char: '" << c << "'\n";
-		auto obj = Factory::create(c, loc, images);
-		std::cout << "[GameController] After Factory::create\n";
+
+		//auto obj = Factory::create(c, loc, images);
+		ObjectConfig objectConfig{ loc, images,/*m_menuInfo.getTypePlayer()*/TypeObject::player }; // default player type
+		auto obj = Factory::create(c, objectConfig);
 
 		if (auto mo = dynamic_cast<MovingObject*>(obj.get()))
 			m_movingObjVec.push_back(std::unique_ptr<MovingObject>(static_cast<MovingObject*>(obj.release())));
