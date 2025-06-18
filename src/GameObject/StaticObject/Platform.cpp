@@ -34,9 +34,8 @@ void Platform::handleCollision(Player& player)
     {
         std::cout << "Player hit the bottom of platform (ceiling)" << std::endl;
        
-/*        player.setJumping(false);
         player.setFalling(true);           
-        player.setLocationY(platformBottom + 1.f);*/ 
+        player.setLocationY(platformBottom + 10.f);
     }
 	else // Hit from the side.
     {
