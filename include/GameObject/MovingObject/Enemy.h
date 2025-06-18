@@ -18,6 +18,9 @@ public:
 private:
 	sf::Vector2f m_direction = { 1.f, 0.f };	// Default direction to the right
 
+	// static : So that the registry is created at compile time.
+	// bool : give some type to the variable, no matter what.
+	static bool m_registerIt;
 };
 
 /*

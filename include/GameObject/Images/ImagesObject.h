@@ -20,20 +20,38 @@
 //
 //};
 //
+//class ImagesObject {
+//public:
+//    ImagesObject();
+//
+//    sf::Sprite getPlayerSprite() const;
+//    sf::Sprite getEnemySprite() const;
+//    sf::Sprite getObstacleSprite() const;
+//	sf::Sprite getExitDoorSprite() const;
+//	sf::Sprite getPlatformSprite() const;
+//	// Add more sprite getters as needed
+//
+//private:
+//    const sf::Texture& getTexture() const; // תחזיר texture טעון
+//};
 
+#pragma once
+#include <SFML/Graphics.hpp>
+#include "GameObject/Images/TypeObject.h"
 
 
 class ImagesObject {
 public:
-    ImagesObject();
 
-    sf::Sprite getPlayerSprite() const;
-    sf::Sprite getEnemySprite() const;
-    sf::Sprite getObstacleSprite() const;
-	sf::Sprite getExitDoorSprite() const;
-	sf::Sprite getPlatformSprite() const;
-	// Add more sprite getters as needed
+    static void loadAllImagesObject();
+
+    static sf::Sprite getSpriteObject(const TypeObject& type);
+    static sf::Sprite getSpritePlayer(const TypeObject& type);
 
 private:
-    const sf::Texture& getTexture() const; // תחזיר texture טעון
+    static std::vector<sf::Texture> m_imagesObject;
+
+    static void loadImageSpriteSheet();
+    static void loadPlayerCharacters();
+
 };

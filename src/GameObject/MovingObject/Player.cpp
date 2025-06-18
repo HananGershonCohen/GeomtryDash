@@ -1,9 +1,13 @@
 #include "GameObject/MovingObject/Player.h"
 #include "GameObject/StaticObject/StaticObject.h"
-#include "nameSpace/MovingData.h"
+#include "GameObject/Factory.h" // for Factory class
 
-Player::Player(sf::Vector2f location, sf::Sprite sprite)
-	: MovingObject(location, sprite) {}
+Player::Player(sf::Vector2f location, sf::Sprite sprite): MovingObject(location, sprite) {}
+
+bool Player::m_registerIt = Factory::registerIt(CHAR::PLAYER,
+	[](sf::Vector2f loc, const ImagesObject& images) -> std::unique_ptr<Object> {
+		return std::make_unique<Player>(loc, images.getSpriteObject(TypeObject::player));
+	});
 
 void Player::startJump()
 {
@@ -54,7 +58,6 @@ void Player::move(float deltaTime)
 void Player::moveUpToDirection(float deltaTime)
 {
 	if (!m_isFalling)
-
 	{
 		m_nextLoc += DIRECTION::UP * (MOVE::JUMP_SPEED * deltaTime);
 	}
@@ -113,6 +116,11 @@ void Player::blockMovement()
 {
 	m_location.x = m_firstLoc.x - COLLISION::VERY_NEAR; // Block movement by resetting to the first location
 	m_location.y = m_firstLoc.y; // Reset Y position to the first location
+}
+
+void Player::setFalling(bool flag)
+{
+	m_isFalling = flag;
 }
 
 //void Player::startJump()

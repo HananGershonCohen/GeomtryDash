@@ -6,6 +6,8 @@ class Information
 public:
 	Information();
 	void draw(sf::RenderWindow&);
-private:
+	int getNumLevel() const { return m_numLevel; }
 
+private:
+	int m_numLevel = 1;
 };

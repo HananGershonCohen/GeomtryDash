@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "GameObject/Images/TypeObject.h"
 #include "GameObject/ObjectInformation.h"
+#include "nameSpace/MovingData.h"
+
 
 class StaticObject;
 class MovingObject;
@@ -19,6 +21,9 @@ public:
 	virtual ~Object() = default;
 	virtual void draw(sf::RenderWindow&);
 	virtual bool objInView(sf::RenderWindow&);
+
+	void setDead(bool flag) { m_dead = flag; }
+	bool isDead() const { return m_dead; }
 
 	bool checkCollision(Object&) const;
 	bool collidesWith(Object&) const;
@@ -38,6 +43,7 @@ protected:
 	sf::Sprite m_sprite;
 	
 	bool m_isInView = true;
+	bool m_dead = false;
 
 	// moveByView is used to move the object by the view's position
 	virtual void moveByView(float&);

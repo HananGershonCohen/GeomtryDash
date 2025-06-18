@@ -18,7 +18,7 @@ public:
 
     // STATIC Compile-time : create fuctory!
     // We want to run the function in the GameController. >> after << the factory is already built!
-    // give arguments and take pointer to basic class 
+    // give arguments and take pointer to basic class .
     static std::unique_ptr<Object> create(char symbol, sf::Vector2f location, const ImagesObject& images);
 
     // STATIC function.

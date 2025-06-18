@@ -10,14 +10,17 @@ std::map<char, Factory::CreatorFunc>& Factory::getMap()
 // bool unimportant !
 // Just because the classes that implement it have a variable that is STATIC.
 // And it needs to be a certain TYPE , and we randomly chose it to be bool .
-bool Factory::registerIt(char symbol, CreatorFunc func) {
+bool Factory::registerIt(char symbol, CreatorFunc func) 
+{
+
+    std::cout << "Registering: " << symbol << std::endl;
     getMap()[symbol] = func; 
     return true;
 }
 
-
 // if exist object in map , Return a constructed and ready-to-use object !
-std::unique_ptr<Object> Factory::create(char symbol, sf::Vector2f location, const ImagesObject& images) {
+std::unique_ptr<Object> Factory::create(char symbol, sf::Vector2f location, const ImagesObject& images) 
+{
     auto it = getMap().find(symbol);
     if (it != getMap().end())
         return it->second(location, images);

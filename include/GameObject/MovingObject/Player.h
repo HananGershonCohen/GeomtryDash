@@ -12,6 +12,8 @@ public:
 	sf::Sprite getSprite() const;
 	void setLocationY(float y);
 	void blockMovement();
+	void setFalling(bool);
+
 	virtual void move(float deltaTime) override; // add move right here on the World. with View.
 	virtual void handleCollision(MovingObject&) override;
 	virtual void handleCollision(StaticObject&) override;
@@ -21,6 +23,10 @@ private:
 
 	sf::Vector2f m_firstLoc;
 	sf::Vector2f m_nextLoc;
+
+	// static : So that the registry is created at compile time.
+	// bool : give some type to the variable, no matter what.
+	static bool m_registerIt;
 
 	sf::Vector2f m_firstLocBeforeJump;
 	bool m_jumping = false;

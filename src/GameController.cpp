@@ -1,5 +1,6 @@
 #include "GameController.h"
 #include <iostream>
+#include <fstream>
 #include "GameObject/MovingObject/Player.h"
 #include "GameObject/MovingObject/Enemy.h"
 #include "GameObject/StaticObject/ExitDoor.h"
@@ -7,6 +8,7 @@
 #include "GameObject/StaticObject/Platform.h"
 #include "GameObject/StaticObject/Gift.h"
 #include "nameSpace/MovingData.h"
+#include "GameObject/Factory.h"
 
 GameController::GameController()
 	: m_window(sf::VideoMode(800, 900), "Geometry Dash"), m_menuManager(m_window)
@@ -43,18 +45,18 @@ void GameController::run()
 //-------------------------------------
 void GameController::mainLoop()
 {
-	ImagesObject images; 
+	/*ImagesObject images; 
 	Player player({ 100.f, 550.f }, images.getPlayerSprite());
 	Enemy enemy({ 200.f, 550.f }, images.getEnemySprite());
 	Obstacle obstacle({ 500.f, 550.f }, images.getObstacleSprite());
 	ExitDoor exitDoor({ 700.f, 550.f }, images.getExitDoorSprite());
-	Platform platform({ 500.f, 550.f }, images.getPlatformSprite());
+	Platform platform({ 500.f, 550.f }, images.getPlatformSprite());*/
 
-	m_movingObjVec.push_back(std::make_unique<Player>(player));
+	//m_movingObjVec.push_back(std::make_unique<Player>(player));
 	//m_movingObjVec.push_back(std::make_unique<Enemy>(enemy));
 	//m_staticObjVec.push_back(std::make_unique<Obstacle>(obstacle));
 	//m_staticObjVec.push_back(std::make_unique<ExitDoor>(exitDoor));
-	m_staticObjVec.push_back(std::make_unique<Platform>(platform));
+	//m_staticObjVec.push_back(std::make_unique<Platform>(platform));
 
 	m_clock.restart();// not to get a lot of time itch time that the function called
 	while (m_window.isOpen()) {
@@ -98,7 +100,7 @@ void GameController::handleEvent()
 void GameController::deleteObjFromVec()
 {
 	std::erase_if(m_movingObjVec, [](const auto& obj) { return obj->isDead(); });
-	//std::erase_if(m_staticObjVec, [](const auto& obj) { return obj->isDead(); });// maybe in i will be able to shot static object and to kill them
+	std::erase_if(m_staticObjVec, [](const auto& obj) { return obj->isDead(); });// maybe in i will be able to shot static object and to kill them
 }
 //-------------------------------------
 void GameController::draw()
@@ -145,28 +147,113 @@ void GameController::handleMenu()
 	}
 }
 //-------------------------------------
+//void GameController::analyzeLevel()
+//{
+//
+//	std::fstream file("Level1.txt");
+//	try
+//	{
+//		if (!file.is_open()) {
+//			throw std::runtime_error("Error: Failed to open file: Level1.txt");
+//		}
+//	}
+//	catch (const std::runtime_error& e)
+//	{
+//		std::cerr << e.what() << std::endl;
+//	}
+//
+//	ImagesObject images;
+//	char c;
+//	int row = 0, col = 0;
+//	while (file >> std::noskipws >> c) {
+//
+//		/*if (c == '#') {
+//			std::cout << "#  " << row << "," << col << std::endl;
+//			sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f };
+//			m_staticObjVec.push_back(std::make_unique<Obstacle>(loc, images.getObstacleSprite()));
+//
+//		}
+//		else if (c == '@') {
+//			std::cout << "@  " << row << "," << col << std::endl;
+//			sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f };
+//			m_movingObjVec.push_back(std::make_unique<Enemy>(loc, images.getEnemySprite()));
+//		}
+//
+//		else if (c == 'p') {
+//			std::cout << "p  " << row << "," << col << std::endl;
+//
+//			sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f };
+//			m_movingObjVec.push_back(std::make_unique<Player>(loc, images.getPlayerSprite()));
+//		}*/
+//		sf::Vector2f loc{ static_cast<float>(col) * 26.f, static_cast<float>(row) * 98.f};
+//		auto obj = Factory::create(c, loc, images);
+//
+//		// obj.release() : need explain.
+//		if (auto mo = dynamic_cast<MovingObject*>(obj.get()))
+//			m_movingObjVec.push_back(std::unique_ptr<MovingObject>(static_cast<MovingObject*>(obj.release())));
+//		else if (auto so = dynamic_cast<StaticObject*>(obj.get()))
+//			m_staticObjVec.push_back(std::unique_ptr<StaticObject>(static_cast<StaticObject*>(obj.release())));
+//
+//		col++;
+//		if (c == '\n')
+//		{
+//			row++;
+//			col = 0;
+//		}
+//	}
+//
+//	file.close();
+//
+//
+//
+//}
+
 void GameController::analyzeLevel()
 {
-	// anlayze ...
-	//sf::Texture avater;
+	ImagesObject::loadAllImagesObject();
+	ImagesObject images;
 
 
-	// Analyze level...  
-	//sf::Texture avatar;
-	//if (!avatar.loadFromFile("Avatar.png")) {
-	//	std::cerr << "Error: Failed to load Avatar.png" << std::endl;
-	//	return;
-	//}
-	//sf::Sprite avaterSprite;
-	//avaterSprite.setTexture(avatar);
 
-	//sf::Vector2f loc{ 0.f, 0.f };
-	//TypeObject playerType = TypeObject::player;
+	std::fstream file("level" + std::to_string(m_information.getNumLevel()) + ".txt");
+	if (!file.is_open())
+	{
+		std::cerr << "Error: Failed to open file: Level" << m_information.getNumLevel() << ".txt" << std::endl;
+		return;
+	}
 
-	//m_movingObjVec.push_back(std::make_unique<Player>(loc, avaterSprite, playerType));
+	// Add logic to read from the file here...
+	char c;
+	int row = 0, col = 0;
+	while (file >> std::noskipws >> c) {
 
-	
+		
+		sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f};
+
+		std::cout << "[GameController] Before Factory::create with char: '" << c << "'\n";
+		auto obj = Factory::create(c, loc, images);
+		std::cout << "[GameController] After Factory::create\n";
+
+		if (auto mo = dynamic_cast<MovingObject*>(obj.get()))
+			m_movingObjVec.push_back(std::unique_ptr<MovingObject>(static_cast<MovingObject*>(obj.release())));
+		else if (auto so = dynamic_cast<StaticObject*>(obj.get()))
+			m_staticObjVec.push_back(std::unique_ptr<StaticObject>(static_cast<StaticObject*>(obj.release())));
+
+		col++;
+		if (c == '\n')
+		{
+			row++;
+			col = 0;
+		}
+
+	}
+
+	file.close();
+
+
+
 }
+
 //-------------------------------------
 void GameController::updateInformation()
 {
@@ -177,3 +264,22 @@ void GameController::updateAfterLevel()
 	m_movingObjVec.clear();
 	m_staticObjVec.clear();
 }
+
+/*if (c == '#') {
+			std::cout << "#  " << row << "," << col << std::endl;
+			sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f };
+			m_staticObjVec.push_back(std::make_unique<Obstacle>(loc, images.getObstacleSprite()));
+
+		}
+		else if (c == '@') {
+			std::cout << "@  " << row << "," << col << std::endl;
+			sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f };
+			m_movingObjVec.push_back(std::make_unique<Enemy>(loc, images.getEnemySprite()));
+		}
+
+		else if (c == 'p') {
+			std::cout << "p  " << row << "," << col << std::endl;
+
+			sf::Vector2f loc{ static_cast<float>(col) * 50.f, static_cast<float>(row) * 50.f };
+			m_movingObjVec.push_back(std::make_unique<Player>(loc, images.getPlayerSprite()));
+		}*/

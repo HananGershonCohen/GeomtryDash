@@ -19,3 +19,15 @@ namespace COLLISION
 	const float NEAR = 10; 
 	const float VERY_NEAR = 1;
 }
+
+namespace CHAR
+{
+	const char PLAYER = 'p';
+	const char ENEMY = '@'; 
+	const char OBSTACLE = 'X'; 
+	const char EXIT_DOOR = 'D';
+	const char PLATFORM = '#'; 
+	const char NONE = ' ';
+	const char GIFT = 'G'; 
+	
+}
