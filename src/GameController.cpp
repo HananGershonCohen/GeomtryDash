@@ -232,7 +232,7 @@ void GameController::analyzeLevel()
 
 
 		//auto obj = Factory::create(c, loc, images);
-		ObjectConfig objectConfig{ loc, images,/*m_menuInfo.getTypePlayer()*/TypeObject::player }; // default player type
+		ObjectConfig objectConfig{ loc, images,/*m_menuInfo.getTypePlayer()*/TypeObject::ExitDoor }; // default player type
 		auto obj = Factory::create(c, objectConfig);
 
 		if (auto mo = dynamic_cast<MovingObject*>(obj.get()))

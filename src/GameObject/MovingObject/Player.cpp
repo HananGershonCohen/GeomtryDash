@@ -11,7 +11,7 @@ Player::Player(sf::Vector2f location, sf::Sprite sprite): MovingObject(location,
 
 bool Player::m_registerIt = Factory::registerIt(CHAR::PLAYER,
 	[](const ObjectConfig& objectConfig) -> std::unique_ptr<Object> {
-		return std::make_unique<Player>(objectConfig.location, objectConfig.images.getSpritePlayer(objectConfig.playerType));
+		return std::make_unique<Player>(objectConfig.location, objectConfig.images.getSpriteObject(objectConfig.playerType));
 	});
 
 void Player::startJump()
@@ -33,32 +33,45 @@ void Player::move(float deltaTime)
 {
 	Object::moveByView(deltaTime); // move the player by the view's position
 
-	// If the player gets stuck in a wall, we will know how to leave him in his position.
-	m_firstLoc = m_location;
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		startJump(); // start jumping if space is pressed.
+		m_move.jump();
 	}
 
-	if (!m_jumping)
-		return;
-	m_nextLoc = m_location; // update.
-
-	// handle Jumping.
-	updateModeDirection(); // check if i need to up or down
-	moveUpToDirection(deltaTime); // Move in the right direction
-	m_location = m_nextLoc;
-
-	//If I returned to the starting position --> I finished the jump!
-	if (m_location.y >= m_firstLocBeforeJump.y)
-	{
-		m_jumping = false;
-		m_isFalling = false;
-		m_location.y = m_firstLocBeforeJump.y;
-	}
+	m_move.update(deltaTime, m_location); 
 
 }
+
+//void Player::move(float deltaTime)
+//{
+//	Object::moveByView(deltaTime); // move the player by the view's position
+//
+//	// If the player gets stuck in a wall, we will know how to leave him in his position.
+//	m_firstLoc = m_location;
+//
+//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+//	{
+//		startJump(); // start jumping if space is pressed.
+//	}
+//
+//	if (!m_jumping)
+//		return;
+//	m_nextLoc = m_location; // update.
+//
+//	// handle Jumping.
+//	updateModeDirection(); // check if i need to up or down
+//	moveUpToDirection(deltaTime); // Move in the right direction
+//	m_location = m_nextLoc;
+//
+//	//If I returned to the starting position --> I finished the jump!
+//	if (m_location.y >= m_firstLocBeforeJump.y)
+//	{
+//		m_jumping = false;
+//		m_isFalling = false;
+//		m_location.y = m_firstLocBeforeJump.y;
+//	}
+//
+//}
 
 void Player::moveUpToDirection(float deltaTime)
 {

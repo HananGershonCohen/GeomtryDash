@@ -167,6 +167,7 @@ sf::Sprite ImagesObject::getSpriteObject(const TypeObject& type)
 
 	case TypeObject::ExitDoor:
 		sprite.setTextureRect(sf::IntRect(40, 836, 80, 80));
+		sprite.setScale(0.5f, 0.5f); // Scale down to fit the game
 		break;
 
 	case TypeObject::Gift:

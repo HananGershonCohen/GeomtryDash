@@ -1,6 +1,7 @@
 #pragma once
 #include "GameObject/MovingObject/MovingObject.h"
 #include "GameObject/Images/ImagesObject.h"
+#include "GameObject/MovingObject/Move/BasicMove.h"
 
 class Player : public MovingObject
 {
@@ -23,6 +24,7 @@ private:
 
 	sf::Vector2f m_firstLoc;
 	sf::Vector2f m_nextLoc;
+	Move m_move; 
 
 	// static : So that the registry is created at compile time.
 	// bool : give some type to the variable, no matter what.
