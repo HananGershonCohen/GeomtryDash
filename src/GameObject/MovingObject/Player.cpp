@@ -36,10 +36,13 @@ void Player::move(float deltaTime)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
 		m_move.jump();
+		m_onGround = false; 
 	}
 
 	m_move.update(deltaTime, m_location); 
 
+	//
+	m_move.setOnGround(m_onGround); 
 }
 
 //void Player::move(float deltaTime)

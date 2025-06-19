@@ -20,11 +20,16 @@ public:
 	virtual void handleCollision(StaticObject&) override;
 	virtual void handleCollision(Enemy&) override;
 	virtual void updateInformation(ObjectInformation&) override;
+
+	// MOVE
+	void setOnGround(bool onGround) { m_onGround = onGround; }
+
 private:
 
 	sf::Vector2f m_firstLoc;
 	sf::Vector2f m_nextLoc;
-	Move m_move; 
+
+	
 
 	// static : So that the registry is created at compile time.
 	// bool : give some type to the variable, no matter what.
@@ -37,4 +42,8 @@ private:
 	void moveUpToDirection(float deltaTime);
 	void updateModeDirection();
 	void startJump();
+
+	// -MOVE
+	Move m_move;
+	bool m_onGround = true; 
 };
