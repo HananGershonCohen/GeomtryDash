@@ -35,14 +35,22 @@ void Player::move(float deltaTime)
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		m_move.jump();
+		m_move.startJump();
 		m_onGround = false; 
 	}
 
-	m_move.update(deltaTime, m_location); 
+	if (m_stuck)
+	{
+		m_move.resetVelocityY();
+		m_move.setOnGround(false); // reset the on ground state
+	}
 
-	//
+	m_move.update(deltaTime, m_location);
 	m_move.setOnGround(m_onGround); 
+	
+	// reset stuck state after moving
+	m_stuck = false; 
+	
 }
 
 //void Player::move(float deltaTime)

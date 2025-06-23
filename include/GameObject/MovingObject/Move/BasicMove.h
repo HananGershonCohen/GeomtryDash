@@ -6,9 +6,9 @@ class Move
 public:
 	Move() = default;
 	void update(float deltaTime, sf::Vector2f& posObj);
-	void jump();
+	void startJump();
 	void setOnGround(bool onGround);
-
+	void resetVelocityY() { m_velocityY = 0.f; } // Reset vertical velocity
 
 private:
 	

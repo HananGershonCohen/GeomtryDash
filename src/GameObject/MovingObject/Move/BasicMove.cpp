@@ -17,7 +17,7 @@ void Move::update(float deltaTime, sf::Vector2f& posObj)
 	posObj.y += m_velocityY * deltaTime;
 }
 
-void Move::jump()
+void Move::startJump()
 {
 	if (m_onGround)
 	{

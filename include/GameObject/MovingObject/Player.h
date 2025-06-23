@@ -23,6 +23,7 @@ public:
 
 	// MOVE
 	void setOnGround(bool onGround) { m_onGround = onGround; }
+	void stuck(bool stuck) { m_stuck = stuck; }
 
 private:
 
@@ -45,5 +46,6 @@ private:
 
 	// -MOVE
 	Move m_move;
-	bool m_onGround = true; 
+	bool m_onGround = false; 
+	bool m_stuck = false; // If the player is stuck in a wall.
 };
