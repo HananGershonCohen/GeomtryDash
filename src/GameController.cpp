@@ -45,18 +45,6 @@ void GameController::run()
 //-------------------------------------
 void GameController::mainLoop()
 {
-	/*ImagesObject images; 
-	Player player({ 100.f, 550.f }, images.getPlayerSprite());
-	Enemy enemy({ 200.f, 550.f }, images.getEnemySprite());
-	Obstacle obstacle({ 500.f, 550.f }, images.getObstacleSprite());
-	ExitDoor exitDoor({ 700.f, 550.f }, images.getExitDoorSprite());
-	Platform platform({ 500.f, 550.f }, images.getPlatformSprite());*/
-
-	//m_movingObjVec.push_back(std::make_unique<Player>(player));
-	//m_movingObjVec.push_back(std::make_unique<Enemy>(enemy));
-	//m_staticObjVec.push_back(std::make_unique<Obstacle>(obstacle));
-	//m_staticObjVec.push_back(std::make_unique<ExitDoor>(exitDoor));
-	//m_staticObjVec.push_back(std::make_unique<Platform>(platform));
 
 	m_clock.restart();// not to get a lot of time itch time that the function called
 	while (m_window.isOpen()) {

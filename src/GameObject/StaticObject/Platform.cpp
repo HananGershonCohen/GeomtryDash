@@ -28,20 +28,17 @@ void Platform::handleCollision(Player& player)
     float platformTop = platformBounds.top;
     float platformBottom = platformBounds.top + platformBounds.height;
 
-   
     if (playerBottom <= platformTop + COLLISION::NEAR) 	// Hit from above.
     {
         std::cout << "Player on platform" << std::endl;
         player.setOnGround(true); //MOVE
-        player.setJumping(false);  
         player.setLocationY(platformTop - playerBounds.height);  // update loc.
     }
     else if (playerTop >= platformBottom - COLLISION::NEAR)  // Hit from below.
     {
         std::cout << "Player hit the bottom of platform (ceiling)" << std::endl;
-       
-        player.stuck(true);
-        player.setFalling(true);           
+
+        player.stuck(true);  
         player.setLocationY(platformBottom + COLLISION::NEAR);
     }
 	else // Hit from the side.

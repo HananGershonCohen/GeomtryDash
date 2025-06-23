@@ -14,28 +14,15 @@ bool Player::m_registerIt = Factory::registerIt(CHAR::PLAYER,
 		return std::make_unique<Player>(objectConfig.location, objectConfig.images.getSpriteObject(objectConfig.playerType));
 	});
 
-void Player::startJump()
-{
-	if (m_jumping) // already jumping.
-		return;
-
-	m_jumping = true; // start jumping.
-	m_firstLocBeforeJump = m_location; // save the first location before jump.
-	m_isFalling = false; // reset falling state.
-}
-
-void Player::setJumping(bool flag)
-{
-	m_jumping = flag; // set the jumping state
-}
-
 void Player::move(float deltaTime)
 {
 	Object::moveByView(deltaTime); // move the player by the view's position
+	m_firstLoc = m_location;
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		m_move.startJump();
+		std::cout << "Player is jumping" << std::endl;
+ 		m_move.startJump();
 		m_onGround = false; 
 	}
 
@@ -50,58 +37,8 @@ void Player::move(float deltaTime)
 	
 	// reset stuck state after moving
 	m_stuck = false; 
-	
-}
+   	m_onGround = false;
 
-//void Player::move(float deltaTime)
-//{
-//	Object::moveByView(deltaTime); // move the player by the view's position
-//
-//	// If the player gets stuck in a wall, we will know how to leave him in his position.
-//	m_firstLoc = m_location;
-//
-//	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//	{
-//		startJump(); // start jumping if space is pressed.
-//	}
-//
-//	if (!m_jumping)
-//		return;
-//	m_nextLoc = m_location; // update.
-//
-//	// handle Jumping.
-//	updateModeDirection(); // check if i need to up or down
-//	moveUpToDirection(deltaTime); // Move in the right direction
-//	m_location = m_nextLoc;
-//
-//	//If I returned to the starting position --> I finished the jump!
-//	if (m_location.y >= m_firstLocBeforeJump.y)
-//	{
-//		m_jumping = false;
-//		m_isFalling = false;
-//		m_location.y = m_firstLocBeforeJump.y;
-//	}
-//
-//}
-
-void Player::moveUpToDirection(float deltaTime)
-{
-	if (!m_isFalling)
-	{
-		m_nextLoc += DIRECTION::UP * (MOVE::JUMP_SPEED * deltaTime);
-	}
-	else
-	{
-		m_nextLoc += DIRECTION::DOWN * (MOVE::JUMP_SPEED * deltaTime);
-	}
-}
-
-void Player::updateModeDirection()
-{
-	if (!m_isFalling && m_location.y <= m_firstLocBeforeJump.y - MOVE::MAX_JUMP)
-	{
-		m_isFalling = true; // הגיע לשיא – מתחיל ליפול
-	}
 }
 
 void Player::handleCollision(MovingObject& other)
@@ -146,38 +83,3 @@ void Player::blockMovement()
 	m_location.x = m_firstLoc.x - COLLISION::VERY_NEAR; // Block movement by resetting to the first location
 	m_location.y = m_firstLoc.y; // Reset Y position to the first location
 }
-
-void Player::setFalling(bool flag)
-{
-	m_isFalling = flag;
-}
-
-//void Player::startJump()
-//{
-//	if (m_jumping)
-//		return;
-//
-//	m_jumping = true;
-//	m_verticalVelocity = m_jumpSpeed; // קפיצה למעלה עם מהירות התחלתית שלילית
-//}
-//
-//void Player::move(float deltaTime)
-//{
-//	if (!m_jumping)
-//		return;
-//
-//	// velocity = מהירות
-//	// vertical = אנכי
-//	// gravity = כוח משיכה
-// 
-//	m_verticalVelocity += m_gravity * deltaTime;
-//	m_location.y += m_verticalVelocity * deltaTime;
-//
-//	// תנאי לסיום הקפיצה: חזר לקרקע
-//	if (m_location.y >= m_firstLocBeforeJump.y)
-//	{
-//		m_location.y = m_firstLocBeforeJump.y;
-//		m_jumping = false;
-//		m_verticalVelocity = 0.f;
-//	}
-//}

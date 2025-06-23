@@ -30,7 +30,7 @@ void Enemy::handleCollision(MovingObject& other)
 
 void Enemy::handleCollision(StaticObject& staticObj)
 {
-	// Handle collision with a static object
+	// handle collision with a static object
 	std::cout << "Enemy collided with StaticObject." << std::endl;
 	m_location.x -= m_direction.x * 10; // Adjust position to avoid sticking
 	m_direction = -m_direction; // Reverse direction on collision with a static object

@@ -9,11 +9,9 @@ public:
 	Player(sf::Vector2f location, sf::Sprite sprite);
 	~Player() override = default;
 
-	void setJumping(bool);
 	sf::Sprite getSprite() const;
 	void setLocationY(float y);
 	void blockMovement();
-	void setFalling(bool);
 
 	virtual void move(float deltaTime) override; // add move right here on the World. with View.
 	virtual void handleCollision(MovingObject&) override;
@@ -25,10 +23,11 @@ public:
 	void setOnGround(bool onGround) { m_onGround = onGround; }
 	void stuck(bool stuck) { m_stuck = stuck; }
 
+
 private:
 
 	sf::Vector2f m_firstLoc;
-	sf::Vector2f m_nextLoc;
+	bool m_need2dead = false;
 
 	
 
@@ -36,13 +35,6 @@ private:
 	// bool : give some type to the variable, no matter what.
 	static bool m_registerIt;
 
-	sf::Vector2f m_firstLocBeforeJump;
-	bool m_jumping = false;
-	bool  m_isFalling = false;    // I am falling now = true.
-	bool m_need2dead = false; 
-	void moveUpToDirection(float deltaTime);
-	void updateModeDirection();
-	void startJump();
 
 	// -MOVE
 	Move m_move;
