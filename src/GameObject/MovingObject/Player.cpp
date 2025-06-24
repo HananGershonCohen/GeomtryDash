@@ -16,8 +16,7 @@ bool Player::m_registerIt = Factory::registerIt(CHAR::PLAYER,
 
 void Player::move(float deltaTime)
 {
-	Object::moveByView(deltaTime); // move the player by the view's position
-	m_firstLoc = m_location;
+	MovingObject::move(deltaTime);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
@@ -25,19 +24,6 @@ void Player::move(float deltaTime)
  		m_move.startJump();
 		m_onGround = false; 
 	}
-
-	if (m_stuck)
-	{
-		m_move.resetVelocityY();
-		m_move.setOnGround(false); // reset the on ground state
-	}
-
-	m_move.update(deltaTime, m_location);
-	m_move.setOnGround(m_onGround); 
-	
-	// reset stuck state after moving
-	m_stuck = false; 
-   	m_onGround = false;
 
 }
 
@@ -73,13 +59,3 @@ sf::Sprite Player::getSprite() const
 	return m_sprite;
 }
 
-void Player::setLocationY(float y)
-{
-	m_location.y = y; // Set the player's Y location
-}
-
-void Player::blockMovement()
-{
-	m_location.x = m_firstLoc.x - COLLISION::VERY_NEAR; // Block movement by resetting to the first location
-	m_location.y = m_firstLoc.y; // Reset Y position to the first location
-}

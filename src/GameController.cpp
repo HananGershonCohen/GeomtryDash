@@ -72,8 +72,8 @@ void GameController::handleEvent()
 {
 	deleteObjFromVec();
 	// maybe move is separate function and update direction is a separate function
-	for (const auto& MovObj : m_movingObjVec)
-		MovObj->updateDirection();
+	/*for (const auto& MovObj : m_movingObjVec)
+		MovObj->updateDirection();*/
 
 	auto deltaTime = m_clock.restart().asSeconds();
 	for (const auto& MovObj : m_movingObjVec)

@@ -23,7 +23,6 @@ void Move::startJump()
 	{
 		m_onGround = false; // Set onGround to false when jumping
 		m_velocityY = m_jumpSpeed; // Set the initial jump speed
-
 	}
 }
 
