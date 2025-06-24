@@ -2,3 +2,4 @@
 
 StaticObject::StaticObject(sf::Vector2f location, sf::Sprite sprite)
 : Object(location, sprite) {}
+

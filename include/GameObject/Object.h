@@ -24,6 +24,7 @@ public:
 
 	void setDead(bool flag) { m_dead = flag; }
 	bool isDead() const { return m_dead; }
+	const sf::Sprite& getSprite() const;
 
 	bool checkCollision(Object&) const;
 	bool collidesWith(Object&) const;

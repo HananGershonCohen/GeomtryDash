@@ -54,8 +54,4 @@ void Player::updateInformation(ObjectInformation& info)
 	m_isInView = true; 
 }
 
-sf::Sprite Player::getSprite() const
-{
-	return m_sprite;
-}
 

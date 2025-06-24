@@ -9,7 +9,7 @@ public:
 	Player(sf::Vector2f location, sf::Sprite sprite);
 	~Player() override = default;
 
-	sf::Sprite getSprite() const;
+
 
 	virtual void move(float deltaTime) override; // add move right here on the World. with View.
 	virtual void handleCollision(MovingObject&) override;

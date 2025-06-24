@@ -18,9 +18,11 @@ bool Platform::m_registerIt = Factory::registerIt(CHAR::PLATFORM,
     });
 
 
-void Platform::handleCollision(Player& player)
+void Platform::handleCollision(Player& movObj)
 {
-    sf::FloatRect playerBounds = player.getSprite().getGlobalBounds();
+
+
+    sf::FloatRect playerBounds = movObj.getSprite().getGlobalBounds();
     sf::FloatRect platformBounds = m_sprite.getGlobalBounds();
 
     float playerBottom = playerBounds.top + playerBounds.height;
@@ -31,19 +33,19 @@ void Platform::handleCollision(Player& player)
     if (playerBottom <= platformTop + COLLISION::NEAR) 	// Hit from above.
     {
         std::cout << "Player on platform" << std::endl;
-        player.setOnGround(true); //MOVE
-        player.setLocationY(platformTop - playerBounds.height);  // update loc.
+        movObj.setOnGround(true); //MOVE
+        movObj.setLocationY(platformTop - playerBounds.height);  // update loc.
     }
     else if (playerTop >= platformBottom - COLLISION::NEAR)  // Hit from below.
     {
         std::cout << "Player hit the bottom of platform (ceiling)" << std::endl;
 
-        player.stuck(true);  
-        player.setLocationY(platformBottom + COLLISION::NEAR);
+        movObj.stuck(true);  
+        movObj.setLocationY(platformBottom + COLLISION::NEAR);
     }
 	else // Hit from the side.
     {
         std::cout << "Blocked by platform (not from top)" << std::endl;
-        player.blockMovement();
+        movObj.blockMovement();
     }
 }

@@ -41,6 +41,11 @@ bool Object::objInView(sf::RenderWindow& window)
 	return m_isInView = viewRect.intersects(m_sprite.getGlobalBounds());
 }
 
+const sf::Sprite& Object::getSprite() const
+{
+	return m_sprite;
+}
+
 bool Object::checkCollision(Object& other) const
 {
 	if (&other == this) 
