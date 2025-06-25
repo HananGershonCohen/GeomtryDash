@@ -20,6 +20,9 @@ void Player::draw(sf::RenderWindow& window)
 	{
 		m_sprite.setPosition(m_location);
 		window.draw(m_sprite);
+
+		if (m_need2dead)
+			returnToSafeLoc(window); // !
 	}
 	else
 	{
@@ -32,17 +35,16 @@ void Player::draw(sf::RenderWindow& window)
 
 void Player::move(float deltaTime)
 {
+	setSafeLocation();
 	MovingObject::move(deltaTime);
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
 	{
-		std::cout << "Player is jumping" << std::endl;
  		m_move.startJump();
-		m_onGround = false; 
-		setSafeLocation();
+		m_onGround = false;
 	}
 
-}
+} 
 
 void Player::handleCollision(MovingObject& other)
 {
@@ -67,14 +69,24 @@ void Player::updateInformation(ObjectInformation& info)
 {
 	// if the player is dead or not in view, set the player dead state
 	info.setPlayerDead(m_need2dead || !m_isInView);
+
+
 	m_need2dead = false;
 	m_isInView = true; 
 }
 
 void Player::setSafeLocation()
 {
-	m_safeLoc.x = m_location.x - MOVE::SAVE_X;
-	m_safeLoc.y = m_location.y;
+	if (!m_safeLocClock.getElapsedTime().asSeconds() >= 5.f)
+		return;
+
+	if ( m_onGround )
+	{
+		m_safeLoc.x = m_location.x - MOVE::SAVE_X;
+		m_safeLoc.y = m_location.y;
+		m_safeLocClock.restart();
+		std::cout << "SAFELOCATION " << std::endl;
+	}
 }
 
 void Player::returnToSafeLoc(sf::RenderWindow& window)

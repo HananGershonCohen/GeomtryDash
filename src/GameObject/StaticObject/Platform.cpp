@@ -32,7 +32,6 @@ void Platform::handleCollision(Player& movObj)
 
     if (playerBottom <= platformTop + COLLISION::NEAR) 	// Hit from above.
     {
-        std::cout << "Player on platform" << std::endl;
         movObj.setOnGround(true); //MOVE
         movObj.setLocationY(platformTop - playerBounds.height);  // update loc.
     }
