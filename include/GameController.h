@@ -22,6 +22,7 @@ private:
 	//-- function ----
 	void handleMenu();
 	void analyzeLevel();
+	void savePlayerPtr(MovingObject* mo);
 	void mainLoop();
 	void handleEvent();
 	void deleteObjFromVec();
@@ -35,6 +36,7 @@ private:
 	std::vector <std::unique_ptr<MovingObject>> m_movingObjVec;
 	std::vector <std::unique_ptr<StaticObject>> m_staticObjVec;
 
+	Player* m_player = nullptr;
 	Information m_information;
 	ObjectInformation m_objInfo;
 	sf::RenderWindow m_window;

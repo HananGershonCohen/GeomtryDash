@@ -8,7 +8,6 @@ public:
     Platform(sf::Vector2f location, sf::Sprite sprite);
     virtual void handleCollision(Player&) override;
 
-
 private:
 
     // static : So that the registry is created at compile time.

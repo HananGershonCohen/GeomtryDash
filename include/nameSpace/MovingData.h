@@ -12,6 +12,8 @@ namespace MOVE
 	const int SPEED = 150; // Speed of the player
 	const int MAX_JUMP = 200; // Height of the jump
 	const int JUMP_SPEED = 350; // Speed of the jump
+	const float SAVE_X = 30.f;
+	constexpr float playerViewOffsetX = 0.25f;
 }
 
 namespace COLLISION

@@ -65,6 +65,14 @@ void GameController::mainLoop()
 		handleCollisionController();
 		draw();
 
+		/*
+		if  info.playerDead
+		
+		player.setLocation() <==  = player.getSaveLocation()
+
+		setView();
+		*/
+
 	}
 }
 //-------------------------------------
@@ -224,7 +232,10 @@ void GameController::analyzeLevel()
 		auto obj = Factory::create(c, objectConfig);
 
 		if (auto mo = dynamic_cast<MovingObject*>(obj.get()))
+		{
+			// savePlayerPtr(mo);
 			m_movingObjVec.push_back(std::unique_ptr<MovingObject>(static_cast<MovingObject*>(obj.release())));
+		}
 		else if (auto so = dynamic_cast<StaticObject*>(obj.get()))
 			m_staticObjVec.push_back(std::unique_ptr<StaticObject>(static_cast<StaticObject*>(obj.release())));
 
@@ -234,13 +245,16 @@ void GameController::analyzeLevel()
 			row++;
 			col = 0;
 		}
-
 	}
-
 	file.close();
+}
 
-
-
+void GameController::savePlayerPtr(MovingObject* mo)
+{
+	if (auto player = dynamic_cast<Player*>(mo))
+	{
+		m_player = player;
+	}
 }
 
 //-------------------------------------
