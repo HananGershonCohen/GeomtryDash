@@ -21,5 +21,6 @@ bool Obstacle::m_registerIt = Factory::registerIt(CHAR::OBSTACLE,
 void Obstacle::handleCollision(Player& player)
 {
 	std::cout << "Obstacle collided with Player. Player is Dead" << std::endl;
-	player.setDead(true); // Set the player as dead
+	//player.setDead(true); // Set the player as dead
+	player.setNeed2Dead();
 }

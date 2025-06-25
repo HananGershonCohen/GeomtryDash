@@ -11,6 +11,12 @@ public:
 	bool isNextLevel() const { return m_nextLevel; }
 	bool isPlayerDead() const { return m_PlayerDead; }
 	int getCoins() const { return m_coins; }
+	int moveCoins()
+	{
+		int coins = m_coins;
+		m_coins = 0;
+		return coins;
+	}
 
 private:
 	bool m_nextLevel = false; 

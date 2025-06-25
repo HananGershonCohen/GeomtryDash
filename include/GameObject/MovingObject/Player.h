@@ -18,6 +18,8 @@ public:
 	virtual void handleCollision(MovingObject&) override;
 	virtual void handleCollision(StaticObject&) override;
 	virtual void handleCollision(Enemy&) override;
+
+	// information
 	virtual void updateInformation(ObjectInformation&) override;
 
 private:
@@ -25,6 +27,7 @@ private:
 	bool m_need2dead = false;
 	 sf::Vector2f m_safeLoc;
 
+	 void returnToSafeLoc(sf::RenderWindow&);
 	 void setSafeLocation();
 	 void setView(sf::RenderWindow&);
 

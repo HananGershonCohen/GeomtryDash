@@ -20,7 +20,7 @@ bool Gift::m_registerIt = Factory::registerIt(CHAR::GIFT,
 void Gift::handleCollision(Player& player)
 {
 	m_addCoin = true;
-	m_dead = true;
+	m_dead = true; // delete this Coin from vector
 }
 
 void Gift::updateInformation(ObjectInformation& info)

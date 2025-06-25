@@ -25,10 +25,8 @@ void Player::draw(sf::RenderWindow& window)
 	{
 		// Solution: The player himself returns the camera to the position.
 		// even though it goes against the principles of oop !
-		m_move.resetVelocityY();
-		m_location = m_safeLoc;
-		setView(window);
-		m_need2dead = false;
+		returnToSafeLoc(window);
+		
 	}
 }
 
@@ -79,23 +77,13 @@ void Player::setSafeLocation()
 	m_safeLoc.y = m_location.y;
 }
 
-//void Player::setView(sf::RenderWindow& window)
-//{
-//	m_sprite.setPosition(m_location);
-//
-//	// שלב 3: תזוז את המצלמה כך שהשחקן יופיע ברבע מהמסך בצד שמאל
-//	sf::View view = window.getView();
-//	float viewWidth = view.getSize().x;
-//	float viewHeight = view.getSize().y;
-//
-//	// מרכז חדש = מיקום השחקן + מרחק מהשוליים
-//	sf::Vector2f newCenter;
-//	newCenter.x = m_location.x + (viewWidth * (0.5f - MOVE::playerViewOffsetX));
-//	newCenter.y = m_location.y + (viewHeight / 2.f);
-//
-//	view.setCenter(newCenter);
-//	window.setView(view);
-//}
+void Player::returnToSafeLoc(sf::RenderWindow& window)
+{
+	m_move.resetVelocityY();
+	m_location = m_safeLoc;
+	setView(window);
+	m_need2dead = false;
+}
 
 void Player::setView(sf::RenderWindow& window)
 {
